@@ -50,10 +50,10 @@ python 3.x
 - 第三方包：你可以使用pip install `packageName`下载它们
 
 ```zsh
-$ pip install numpy                 # 这里用于处理numpy数组 
-$ pip install apscheduler			# APS定时框架
-$ pip install requests				# HTTP for Humans.
-$ pip install pandas				# 这里用作数据读取
+pip install numpy               # 这里用于处理numpy数组 
+pip install apscheduler         # APS定时框架
+pip install requests            # HTTP for Humans.
+pip install pandas              # 这里用作数据读取
 ```
 
 - 代发邮箱开启`POP3/SMTP`服务：
