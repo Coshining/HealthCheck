@@ -1,10 +1,10 @@
-# <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=69948112,3892466283&fm=26&gp=0.jpg" alt="hnu" style="zoom:15%;" /> HNU 自动打卡 HealthCheck
+# <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=69948112,3892466283&fm=26&gp=0.jpg" alt="hnu" width = "80" height = "77" /> HNU 自动打卡 HealthCheck
 
 - 简介 :bulb:
 
 > HealthCheck基于**python**搭建，它每天尝试三次打卡，成功后会**邮箱提醒**你打卡成功; 如果3次尝试还没有成功，它会邮件提醒您手动打卡，并将**错误日志**发送给开发者（yourself）.
 >
-> HealthCheck分离代码和配置文件，你可以很方便地通过修改配置文件来达到**切换运行**环境的目的。同时你也可以通过向用户列表文件中添加新的打卡用户信息来进行**批量打卡**。同时mapper文件夹下的接口分离主程序，可以随时**测试接口**。
+> HealthCheck分离代码和配置文件，你可以很方便地通过修改配置文件来达到**切换运行**环境的目的。同时你也可以通过向用户列表文件中添加新的打卡用户信息来进行**批量打卡**。mapper文件夹下的接口与主程序分离，可以随时**测试接口**。
 >
 > HealthCheck通过ASP定时框架来实现定点打卡，一旦你将HealthCheck部署到服务器，即可解放双手，高效生活。
 
@@ -149,5 +149,5 @@ screen -S HealthCheck
 # 进入根目录
 cd HealthCheck
 # 执行
-python main
+python main.py
 ```
