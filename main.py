@@ -82,4 +82,3 @@ if __name__ == '__main__':
     sched = BlockingScheduler()
     sched.add_job(check_Job,'cron',hour=checkHour,minute=checkMin)
     sched.start()
-    sendEmail(senderEmail,"littlede@hnu.edu.cn",AuthCode,sender,"username","打卡成功提醒",sucessMsg)
