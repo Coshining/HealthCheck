@@ -134,9 +134,7 @@ $ python main.py
 
 <img src="https://i.loli.net/2021/02/12/ClmSj6RqrnO9JeB.png" alt="image-20210212142621554" width = "400"/> <img src="https://i.loli.net/2021/02/12/mzMoVOyfSdWlH48.png" alt="image-20210212142659234" width = "400" />
 
-
-
-<img src="https://i.loli.net/2021/02/13/46tuGXKPJRohexO.jpg" alt="C313FE18246B657693F4FEB6297FE676" width = "400" /> （开发者dev）
+<img src="https://i.loli.net/2021/02/13/6xBdGVJEKqUeR1g.png" alt="image-20210213131631644" width = "400" /> （开发者dev）
 
 ## 部署服务器（非必须）
 
