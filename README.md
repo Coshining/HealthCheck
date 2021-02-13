@@ -2,7 +2,7 @@
 
 - 简介 :bulb:
 
-> HealthCheck基于**python**搭建，它每天尝试三次打卡，成功后会**邮箱提醒**你打卡成功; 如果3次尝试还没有成功，它会邮件提醒您手动打卡，并将**错误日志**发送给开发者（yourself）.
+> HealthCheck基于**python**搭建，它每天尝试三次打卡，成功后会**邮箱提醒**你打卡成功; 如果3次尝试仍未成功，HealthCheck会邮件提醒您手动打卡，并将**错误日志**发送给开发者（yourself）.
 >
 > HealthCheck分离代码和配置文件，你可以很方便地通过修改配置文件来达到**切换运行**环境的目的。同时你也可以通过向用户列表文件中添加新的打卡用户信息来进行**批量打卡**。mapper文件夹下的接口与主程序分离，可以随时**测试接口**。
 >
@@ -58,11 +58,11 @@ pip install pandas              # 这里用作数据读取
 
 - 代发邮箱开启`POP3/SMTP`服务：
 
-此程序包含邮箱提醒功能，如果你想要使用此功能，请将代发邮箱开启`POP3/SMTP`服务。参考教程：https://jingyan.baidu.com/article/6079ad0eb14aaa28fe86db5a.html，注意开启服务后将会获取一段**授权码**，请保留。
+此程序包含邮箱提醒功能，如果你想要使用此功能，请将代发邮箱开启`POP3/SMTP`服务。参考教程：https://jingyan.baidu.com/article/6079ad0eb14aaa28fe86db5a.html ，注意开启服务后将会获取一段**授权码**，请保留。
 
 - 注册**快识别**帐号：
 
-由于采用了验证码的验证方式，所以我们要识别验证码图片，最简单的方法是用第三方API。**快识别** 免费提供了这样的服务。我们需要注册快识别的帐号来支持验证码图片识别功能，快识别官网：http://fast.95man.com/（建议不要滥用）
+由于采用了验证码的验证方式，所以我们要识别验证码图片，最简单的方法是用第三方API。**快识别** 免费提供了这样的服务。我们需要注册快识别的帐号来支持验证码图片识别功能，快识别官网：http://fast.95man.com/ （建议不要滥用）
 
 
 
@@ -86,6 +86,7 @@ senderEmail = '×××'		# 代发邮箱（使用此邮箱给打卡用户发送邮
 sender = "×××"			# 代发邮箱昵称，任意
 devEmail = '×××'		# 开发者邮箱（如出现打卡失败的情况，代发邮箱给此邮箱发送打卡失败用户列表）
 AuthCode = '×××'		# 开启`POP3/SMTP`服务时的授权码
+port = 587              # stmp使用端口
 
 sucessMsg = '   今日打卡成功，打卡时间：'
 failMsg = '     我们对您的账户进行了3次打卡尝试，由于某些原因导致打卡失败，请于今日手动完成打卡。\
@@ -131,13 +132,16 @@ $ python main.py
 
 - 邮箱提醒
 
-<img src="https://i.loli.net/2021/02/12/ClmSj6RqrnO9JeB.png" alt="image-20210212142621554" style="zoom:50%;" /> <img src="https://i.loli.net/2021/02/12/mzMoVOyfSdWlH48.png" alt="image-20210212142659234" style="zoom:50%;" />
+<img src="https://i.loli.net/2021/02/12/ClmSj6RqrnO9JeB.png" alt="image-20210212142621554" width = "400"/> <img src="https://i.loli.net/2021/02/12/mzMoVOyfSdWlH48.png" alt="image-20210212142659234" width = "400" />
 
 
+
+<img src="https://i.loli.net/2021/02/13/46tuGXKPJRohexO.jpg" alt="C313FE18246B657693F4FEB6297FE676" width = "400" /> （开发者dev）
 
 ## 部署服务器（非必须）
 
-如果将HealthCheck部署到服务器，你就能完全解放双手了，部署方法见：
+如果将HealthCheck部署到服务器，你就能完全解放双手了，部署方法如下：
+
 
 ```python
 # 在服务器上克隆项目
@@ -151,3 +155,6 @@ cd HealthCheck
 # 执行
 python main.py
 ```
+- 注意：
+
+阿里云或者腾讯云一般未开放stmp功能的默认端口，这意味着你在本地电脑上可以通过邮箱测试，部署到云端则会出现错误。因此在部署时，安全组一定要放行stmp端口。本教程中使用阿里云，qq邮箱，端口为587.
