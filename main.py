@@ -46,7 +46,10 @@ def check_Job():
         # 遍历用户列表
         for i in range(1,len(users)):
             username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince = users[i]
-            res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince)
+            try:
+                res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince)
+            except:
+                res = -1
             cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
             # 打卡成功
             if(res == 0):
@@ -79,3 +82,4 @@ if __name__ == '__main__':
     sched = BlockingScheduler()
     sched.add_job(check_Job,'cron',hour=checkHour,minute=checkMin)
     sched.start()
+    sendEmail(senderEmail,"littlede@hnu.edu.cn",AuthCode,sender,"username","打卡成功提醒",sucessMsg)
