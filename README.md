@@ -128,7 +128,7 @@ $ python main.py
 
 - 终端日志
 
-<img src="https://i.loli.net/2021/02/12/KZtjcHnwiTlva9W.png" alt="image-20210212142308263" style="zoom: 51%;" /> 
+<img src="https://i.loli.net/2021/02/14/UOB7DYiwfc2JTFs.png" alt="image-20210214080717753" style="zoom:53%;" /> 
 
 - 邮箱提醒
 
