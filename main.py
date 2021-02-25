@@ -10,7 +10,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from config.appConfig import *
 
 # 打卡
-def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince):
+def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus):
     imageName = username+".jpeg"
     # 获取&下载图片
     token = getToken(tokenURL)
@@ -28,8 +28,9 @@ def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince):
     response,cookie= login(loginUrl,username,passwd,token,verCode)
     if response['code'] != 0:   # 登陆失败
         return -1
+    print("登陆成功")
     # 提交信息
-    response = commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,cookie)
+    response = commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,cookie,IsInCampus)
     print(response)
     return response['code']
 
@@ -45,9 +46,9 @@ def check_Job():
         sucessList = []
         # 遍历用户列表
         for i in range(1,len(users)):
-            username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince = users[i]
+            username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus = users[i]
             try:
-                res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince)
+                res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus)
             except:
                 res = -1
             cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
@@ -65,7 +66,7 @@ def check_Job():
     # 未成功打卡的用户发送邮箱提醒手动打卡
     unCheck = ""
     for i in range(1,len(users)):
-        username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince = users[i]
+        username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus = users[i]
         cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
         print("错误",i)
         sendEmail(senderEmail,email,AuthCode,
