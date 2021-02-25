@@ -30,7 +30,7 @@ def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,IsInCampu
         return -1
     print("登陆成功")
     # 提交信息
-    response = commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,cookie,IsInCampus)
+    response = commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus,cookie)
     print(response)
     return response['code']
 
