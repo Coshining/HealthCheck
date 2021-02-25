@@ -2,7 +2,7 @@ import requests
 import os
 
 # 登录请求
-def commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,cookie):
+def commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus,cookie):
     headers = {
         'Connection': 'keep-alive',
         'Content-Length': '527',
@@ -13,7 +13,7 @@ def commit(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,cookie):
     }
     data ={
     "IsDiagnosis": "0",
-    "IsInCampus": "0",
+    "IsInCampus": IsInCampus,      
     "IsInsulated": "0",
     "IsNormalTemperature": "1",
     "IsSuspected": "0",
