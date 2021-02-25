@@ -108,9 +108,9 @@ checkMin  = '20'
 程序已配置完毕，接下来填写打卡用户信息。你需要修改路径`HealthCheck/data/user.csv` 文件，参考以下实例：
 
 ```python
-username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince
-802180010599,mima123456,3214566@qq.com,密西西比村,岳阳市,岳阳县,湖南省
-802180010598,mima654321,1245678@qq.com,八里屯小区,武威市,凉州区,甘肃省
+username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus
+802180010599,mima123456,3214566@qq.com,密西西比村,岳阳市,岳阳县,湖南省,0
+802180010598,mima654321,1245678@qq.com,八里屯小区,武威市,凉州区,甘肃省,0
 .....继续添加
 ```
 
