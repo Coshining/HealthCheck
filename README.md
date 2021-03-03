@@ -1,6 +1,6 @@
 # <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=69948112,3892466283&fm=26&gp=0.jpg" alt="hnu" width = "80" height = "77" /> HNU 自动打卡 HealthCheck
 
--  **2021/3/3 更新 :star_and_crescent: **
+- 2021/3/3 更新 :bulb: 
 
 > 由于系统更换了打卡表单，新增了体温值统计，程序做了相应调整。
 >
