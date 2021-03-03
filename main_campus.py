@@ -79,7 +79,8 @@ def check_Job():
         "打卡失败提醒(dev)","打卡出现问题，下列用户未打卡"+unCheck)
     
 if __name__ == '__main__':
-    定点任务
+    # 定点任务
     sched = BlockingScheduler()
     sched.add_job(check_Job,'cron',hour=checkHour,minute=checkMin)
     sched.start()
+    # check_Job()

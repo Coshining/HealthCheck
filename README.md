@@ -4,9 +4,9 @@
 
 > 由于系统更换了打卡表单，新增了体温值统计，程序做了相应调整。
 >
-> **1.如果表单不需要收集测量体温值，请使用master分支**
+> **1.如果表单不需要填写测量体温值，请使用master分支**
 >
-> **2.如果表单需要测量体温值，请使用campus分支**
+> **2.如果表单需要填写测量体温值，请使用campus分支**
 
 - 简介 :bulb:
 
@@ -27,10 +27,12 @@
 .
 ├── config						
 │   └── appConfig.py            # 配置文件
-├── data						
-│   ├── .img                    # 验证码图片缓存
-│   └── user.csv                # 打卡用户信息 
+├── data
+│   ├── .img      				# 验证码图片缓存
+│   ├── user_campus.csv			# 2021/3/3更新：包含体温测量值的打卡用户信息
+│   └── user.csv				# 打卡用户信息         
 ├── main.py                     # 程序入口
+├── main_campus.py				# 2021/3/3更新：包含体温测量值的打卡用户信息的程序入口
 ├── mapper                      # 方法接口
 │   ├── commit.py               # 提交打卡信息表单
 │   ├── getImage.py             # 下载保存验证码图片
@@ -88,6 +90,7 @@ commitUrl= 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
 # path
 dirPath  = './data/.img/'
 dataPath = './data/user.csv'
+dataPathCampus = './data/user_campus.csv'	# 2021/3/3更新
 
 # 邮箱配置
 senderEmail = '×××'		# 代发邮箱（使用此邮箱给打卡用户发送邮件）
@@ -115,11 +118,23 @@ checkMin  = '20'
 
 程序已配置完毕，接下来填写打卡用户信息。你需要修改路径`HealthCheck/data/user.csv` 文件，参考以下实例：
 
+- 原版本：
+
 ```python
 username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus
-802180010599,mima123456,3214566@qq.com,密西西比村,岳阳市,岳阳县,湖南省,0
+802180010599,mima123456,3214566@qq.com,岳麓区,岳阳市,岳阳县,湖南省,0
 802180010598,mima654321,1245678@qq.com,八里屯小区,武威市,凉州区,甘肃省,0
 .....继续添加
+```
+
+- 2021/3/3更新
+
+```python
+username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp
+2018*******2,****,***@qq.com,湖南大学天马学生公寓3区11栋***,长沙市,岳麓区,湖南省,1,36.3,36.3
+...
+...
+...
 ```
 
 > 注意：username,passwd分别代表Grmh的帐号和密码。
@@ -131,14 +146,15 @@ username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus
 - 最后，你可以简单的使用命令执行`main.py`
 
 ```zsh
-$ python main.py
+$ python main.py				# 原版本
+$ python main_campus.py			# 2021/3/3更新
 ```
 
-- 终端日志
+- **终端日志**
 
-<img src="https://i.loli.net/2021/02/14/UOB7DYiwfc2JTFs.png" alt="image-20210214080717753" style="zoom:53%;" /> 
+<img src="https://i.loli.net/2021/03/03/OMqYyjT8LGKtsVN.png" alt="image-20210303163907838" style="zoom: 55%;" />  
 
-- 邮箱提醒
+- **邮箱提醒**
 
 <img src="https://i.loli.net/2021/02/12/ClmSj6RqrnO9JeB.png" alt="image-20210212142621554" width = "400"/> <img src="https://i.loli.net/2021/02/12/mzMoVOyfSdWlH48.png" alt="image-20210212142659234" width = "400" />
 
@@ -149,7 +165,7 @@ $ python main.py
 如果将HealthCheck部署到服务器，你就能完全解放双手了，部署方法如下：
 
 
-```python
+```zsh
 # 在服务器上克隆项目
 git clone git@github.com:LinXiaoDe/HealthCheck.git
 # 修改配置文件和用户列表
@@ -159,7 +175,7 @@ screen -S HealthCheck
 # 进入根目录
 cd HealthCheck
 # 执行
-python main.py
+python main.py 或 python main_campus.py
 ```
 - 注意：
 
