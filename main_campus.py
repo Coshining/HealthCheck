@@ -9,6 +9,7 @@ import time
 from apscheduler.schedulers.blocking import BlockingScheduler
 from config.appConfig import *
 
+
 # 打卡
 def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp):
     imageName = username+".jpeg"
@@ -19,9 +20,9 @@ def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState
         url = imageURL + "?token=" + token
         getPic(url,dirPath,imageName)
     # 获取验证码
-    Ks95man = KSClient()	
+    Ks95man = KSClient()
     verCode = ""
-    if Ks95man.GetTaken(k95Username,k95Passwd):   								
+    if Ks95man.GetTaken(k95Username,k95Passwd):
         verCode = Ks95man.PostPic(dirPath+imageName,2)
         print('识别结果：'+verCode)
     # 登陆
@@ -33,6 +34,7 @@ def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState
     response = commit_campus(commitUrl,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp,cookie)
     print(response)
     return response['code']
+
 
 # 循环打卡作业
 def check_Job():
@@ -72,15 +74,16 @@ def check_Job():
         sendEmail(senderEmail,email,AuthCode,
         sender,username,"打卡失败提醒","Hi "+username+" ：\n"+failMsg)
         unCheck +=(username + '\n')
-    
+
     # 开发者邮件
-    if unCheck!="":    
+    if unCheck!="":
         sendEmail(senderEmail,devEmail,AuthCode,sender,'Developer',
         "打卡失败提醒(dev)","打卡出现问题，下列用户未打卡"+unCheck)
-    
+
+
 if __name__ == '__main__':
     # 定点任务
-    sched = BlockingScheduler()
-    sched.add_job(check_Job,'cron',hour=checkHour,minute=checkMin)
-    sched.start()
-    # check_Job()
+    # sched = BlockingScheduler()
+    # sched.add_job(check_Job,'cron',hour=checkHour,minute=checkMin)
+    # sched.start()
+    check_Job()

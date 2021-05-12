@@ -6,7 +6,7 @@ commitUrl= 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
 
 # path
 dirPath  = './data/.img/'
-dataPath = './data/user_.csv'
+dataPath = './data/user.csv'
 dataPathCampus = './data/user_campus.csv'
 
 
